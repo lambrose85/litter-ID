@@ -1,14 +1,4 @@
-#Lucas Ambrose
-#version 1.0
-#usb webcam to monitor home office environment
 
-#added background subtraction using KNN to identify movement
-#added rectangular object identification 
-
-
-#todo
-#paste this into llm and see if it can explain whats going on step by step 
-#
 import Log
 
 def main():
