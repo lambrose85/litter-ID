@@ -1,0 +1,62 @@
+# config.yaml
+# Cat Litter Box Monitor Configuration
+# Version: 1.0
+# Last Updated: 1/20/2026
+
+# ========== APPLICATION SETTINGS ==========
+app:
+  name: "Cat Litter Box Monitor"
+  version: "1.0"
+  author: "Lucas Ambrose"
+
+# ========== CAMERA SETTINGS ==========
+camera:
+  device_id: 0                # 0 = default webcam, 1 = secondary, etc.
+  width: 1920                 # Frame width
+  height: 1080                # Frame height
+  fps: 30                     # Frames per second
+  show_preview: true          # Show OpenCV windows
+  record_output: false        # Record to video file
+  output_filename: "output.mp4"
+
+# ========== MOTION DETECTION SETTINGS ==========
+detection:
+  # Background Subtractor (KNN)
+  history: 500                # Frames to keep in background model
+  dist_threshold: 400         # Sensitivity (lower = more sensitive)
+  detect_shadows: true        # Detect shadows as gray (not foreground)
+  
+  # Noise reduction
+  kernel_size: 3              # Size for morphological operations (3, 5, 7)
+  dilation_iterations: 2      # How much to expand detected motion
+  
+  # Contour filtering
+  min_contour_area: 500       # Ignore small motion blobs (pixels)
+
+# ========== LITTER BOX ZONE ==========
+litter_box:
+  # Coordinates as percentages of frame (0.0 to 1.0)
+  # Easier to adjust than pixel coordinates!
+  x1_percent: 0.30  # Left edge (30% from left)
+  y1_percent: 0.40  # Top edge (40% from top)
+  x2_percent: 0.70  # Right edge (70% from left)
+  y2_percent: 0.80  # Bottom edge (80% from top)
+  
+  # Minimum time in box to count as "usage" (seconds)
+  min_usage_time: 10
+  max_usage_time: 300  # Alert if cat stays > 5 minutes
+
+# ========== LOGGING SETTINGS ==========
+logging:
+  enabled: true
+  console_output: true        # Print events to console
+  csv_file: "cat_events.csv"
+  jsonl_file: "cat_events.jsonl"
+  max_file_size_mb: 10        # Rotate logs when they get too big
+  
+# ========== DEBUG/DEVELOPMENT ==========
+debug:
+  enabled: false              # Set to true for extra output
+  show_mask_window: false     # Show the motion mask window
+  print_fps: true             # Print frames per second
+  log_level: "INFO"           # DEBUG, INFO, WARNING, ERROR
