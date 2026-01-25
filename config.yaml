@@ -37,10 +37,10 @@ detection:
 litter_box:
   # Coordinates as percentages of frame (0.0 to 1.0)
   # Easier to adjust than pixel coordinates!
-  x1_percent: 0.30  # Left edge (30% from left)
+  x1_percent: 0.20  # Left edge (30% from left)
   y1_percent: 0.40  # Top edge (40% from top)
   x2_percent: 0.70  # Right edge (70% from left)
-  y2_percent: 0.80  # Bottom edge (80% from top)
+  y2_percent: 1.0  # Bottom edge (80% from top)
   
   # Minimum time in box to count as "usage" (seconds)
   min_usage_time: 10
